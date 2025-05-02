@@ -1,0 +1,7 @@
+DB_URL=jdbc:mysql://localhost:3306/bharath_deployment_practice_db
+DB_USERNAME=root
+DB_PASSWORD=root
+server.port=9872
+JPA_SHOW_SQL=true
+JPA_FORMAT_SQL=true
+CREATE_TABLE_AUTOMATIC=update
