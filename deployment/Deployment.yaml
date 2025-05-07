@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: customer-app
+  template:
+    metadata:
+      labels:
+        app: customer-app
+    spec:
+      containers:
+        - name: springboot-container
+          image: your-docker-image-name:latest  # Replace with your actual image
+          ports:
+            - containerPort: 9872
+          env:
+            - name: DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: DB_URL
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: DB_PASSWORD
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: SERVER_PORT
+            - name: JPA_SHOW_SQL
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: JPA_SHOW_SQL
+            - name: JPA_FORMAT_SQL
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: JPA_FORMAT_SQL
+            - name: CREATE_TABLE_AUTOMATIC
+              valueFrom:
+                configMapKeyRef:
+                  name: customer-app-cm
+                  key: CREATE_TABLE_AUTOMATIC

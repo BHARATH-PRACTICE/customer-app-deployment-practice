@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customer-app-cm
+data:
+  DB_URL: jdbc:mysql://34.68.44.229:3306/bharath_gcp_deployment_practice_db
+  DB_USERNAME: bharath
+  DB_PASSWORD: root
+  SERVER_PORT: "9872"
+  JPA_SHOW_SQL: "true"
+  JPA_FORMAT_SQL: "true"
+  CREATE_TABLE_AUTOMATIC: update
