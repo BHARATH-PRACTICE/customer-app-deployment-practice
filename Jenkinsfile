@@ -11,7 +11,7 @@ pipeline {
     stage('Checkout') {
       steps {
         checkout scmGit(
-          branches: [[name: 'feat/*']],
+          branches: [[name: 'origin/feat/*']],
           extensions: [],
           userRemoteConfigs: [[
             credentialsId: 'git-org-token',
