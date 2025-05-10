@@ -24,21 +24,21 @@ pipeline {
     stage('Build') {
       steps {
         echo '🔧 Simulating build process...'
-        sh 'echo Building the project...'
+        //sh 'echo Building the project...'
       }
     }
 
     stage('Test') {
       steps {
         echo '🧪 Simulating test process...'
-        sh 'echo Running tests...'
+        //sh 'echo Running tests...'
       }
     }
 
     stage('Deploy') {
       steps {
         echo '🚀 Simulating deployment process...'
-        sh 'echo Deploying application...'
+        //sh 'echo Deploying application...'
       }
     }
   }
