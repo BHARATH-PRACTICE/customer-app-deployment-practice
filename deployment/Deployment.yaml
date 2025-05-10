@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: customer-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: customer-app
@@ -13,8 +13,8 @@ spec:
         app: customer-app
     spec:
       containers:
-        - name: springboot-container
-          image: your-docker-image-name:latest  # Replace with your actual image
+        - name: customer-app-container
+          image: bharathreddy13/customer-app:1.0.2  # Replace with your actual image
           ports:
             - containerPort: 9872
           env:
