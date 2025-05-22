@@ -29,7 +29,7 @@ pipeline {
     stage('Build') {
       steps {
         echo '🔧 Building the Maven project...'
-        sh 'mvn clean install'
+        bat 'mvn clean install'
       }
     }
 
