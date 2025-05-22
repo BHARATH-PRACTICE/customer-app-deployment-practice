@@ -30,7 +30,7 @@ pipeline {
       steps {
         echo '🔧 Building the Maven project...'
         bat """
-          set "PATH=%MAVEN_HOME%\\bin;%PATH%"
+          set "PATH=%JAVA_HOME%\\bin;%MAVEN_HOME%\\bin;%PATH%"
           mvn clean install
         """
       }
