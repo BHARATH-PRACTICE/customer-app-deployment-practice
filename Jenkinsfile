@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  environment {
+    MAVEN_HOME = tool 'maven-3.9.9' 
+    PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+  }
+
   options {
     skipDefaultCheckout(true)
     timestamps()
@@ -23,22 +28,33 @@ pipeline {
 
     stage('Build') {
       steps {
-        echo '🔧 Simulating build process...'
-        //sh 'echo Building the project...'
+        echo '🔧 Building the Maven project...'
+        sh 'mvn clean install'
       }
     }
 
-    stage('Test') {
+    stage('Deploy to Nexus') {
       steps {
-        echo '🧪 Simulating test process...'
-        //sh 'echo Running tests...'
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        echo '🚀 Simulating deployment process...'
-        //sh 'echo Deploying application...'
+        echo '📦 Deploying artifact to Nexus...'
+        withCredentials([usernamePassword(credentialsId: 'nexus-repository', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+          writeFile file: 'settings.xml', text: """
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+  <servers>
+    <server>
+      <id>nexus-releases</id>
+      <username>${NEXUS_USER}</username>
+      <password>${NEXUS_PASS}</password>
+    </server>
+    <server>
+      <id>nexus-snapshots</id>
+      <username>${NEXUS_USER}</username>
+      <password>${NEXUS_PASS}</password>
+    </server>
+  </servers>
+</settings>
+"""
+          sh 'mvn deploy -s settings.xml'
+        }
       }
     }
   }
