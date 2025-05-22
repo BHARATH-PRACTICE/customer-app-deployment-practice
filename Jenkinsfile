@@ -2,8 +2,7 @@ pipeline {
   agent any
 
   environment {
-    MAVEN_HOME = tool 'maven-3.9.9' 
-    PATH = "${MAVEN_HOME}/bin:${env.PATH}"
+    MAVEN_HOME = tool 'maven-3.9.9'
   }
 
   options {
@@ -29,7 +28,10 @@ pipeline {
     stage('Build') {
       steps {
         echo '🔧 Building the Maven project...'
-        bat 'mvn clean install'
+        bat """
+          set "PATH=%MAVEN_HOME%\\bin;%PATH%"
+          mvn clean install
+        """
       }
     }
 
@@ -52,8 +54,11 @@ pipeline {
     </server>
   </servers>
 </settings>
-"""
-          sh 'mvn deploy -s settings.xml'
+          """
+          bat """
+            set "PATH=%MAVEN_HOME%\\bin;%PATH%"
+            mvn deploy -s settings.xml
+          """
         }
       }
     }
