@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     MAVEN_HOME = tool 'maven-3.9.9'
-    JAVA_HOME = tool 'jenkins-jdk' 
+    JAVA_HOME = tool name: 'jenkins-jdk', type: 'hudson.model.JDK'
   }
 
   options {
