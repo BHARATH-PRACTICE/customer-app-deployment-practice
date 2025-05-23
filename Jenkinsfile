@@ -72,7 +72,27 @@ pipeline {
       }
     }
   }
+stage('Docker Login & Push') {
+  steps {
+    script {
+      def imageName = "bharathreddy13/customer-app"
+      def imageTag = "v${env.BUILD_NUMBER}"
 
+      withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+        sh """
+          echo "🔐 Logging into Docker registry"
+          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+          echo "🐳 Building image ${imageName}:${imageTag}"
+          docker build -t ${imageName}:${imageTag} .
+
+          echo "🚀 Pushing image to registry"
+          docker push ${imageName}:${imageTag}
+        """
+      }
+    }
+  }
+}
   post {
     success {
       echo "✅ Build and deployment succeeded!"
