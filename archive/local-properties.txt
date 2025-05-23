@@ -5,4 +5,3 @@ server.port=9872
 JPA_SHOW_SQL=true
 JPA_FORMAT_SQL=true
 CREATE_TABLE_AUTOMATIC=update
-//
