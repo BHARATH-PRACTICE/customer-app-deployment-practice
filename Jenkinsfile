@@ -79,7 +79,7 @@ pipeline {
           def imageTag = "v${env.BUILD_NUMBER}"
 
           withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-            sh """
+            bat """
               echo "🔐 Logging into Docker registry"
               echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
