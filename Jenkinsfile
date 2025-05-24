@@ -81,7 +81,8 @@ pipeline {
           withCredentials([usernamePassword(credentialsId: 'docker-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             bat """
               echo "🔐 Logging into Docker registry"
-              echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+              echo "$DOCKER_PASS" 
+              docker login -u "$DOCKER_USER" --password "$DOCKER_PASS"
 
               echo "🐳 Building image ${imageName}:${imageTag}"
               docker build -t ${imageName}:${imageTag} .
