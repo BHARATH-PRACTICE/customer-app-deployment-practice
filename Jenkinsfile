@@ -4,4 +4,4 @@ remote: 'https://github.com/BHARATH-PRACTICE/jenkins-pipelines-shared-lib.git',
 credentialsId :'git-org-token'
 ])
 
-springBoot appName:'customer-app',repoName :'customer-app-deployment-practice'
+springBoot(appName: 'customer-app', repoName: 'customer-app-deployment-practice')
