@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.bharath</groupId>
 	<artifactId>customer-app-gcp-praactice</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>CustomerApp</name>
 	<description>Demo project for deployment practice</description>
 	<url />
