@@ -1,5 +1,5 @@
 library(
-    identifier: 'springBoot@main',
+    identifier: 'sharedLib@main',
     retriever: modernSCM([
         $class: 'GitSCMSource',
         remote: 'https://github.com/BHARATH-PRACTICE/jenkins-pipelines-shared-lib.git',
@@ -8,7 +8,7 @@ library(
 )
 
 // Call your shared library method with parameters
-springBoot([
+sharedLib([
     appName : 'customer-app',
     repoName: 'customer-app-deployment-practice'
 ])
